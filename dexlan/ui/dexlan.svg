@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Marca do DexLan: ecrã que tens (cheio), ecrã que ganhas (contorno), sinal (verde) -->
+  <rect width="128" height="128" rx="8" fill="#EDEDED"/>
+  <g transform="translate(16 14) scale(1.5)">
+    <rect x="4" y="22" width="34" height="24" rx="1.5" fill="#121212"/>
+    <rect x="15" y="48" width="12" height="3" fill="#121212"/>
+    <rect x="28" y="10" width="32" height="22" rx="1.5" fill="none" stroke="#121212" stroke-width="3"/>
+    <path d="M40 35 A9 9 0 0 1 49 44" fill="none" stroke="#1E6B34" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M40 29 A15 15 0 0 1 55 44" fill="none" stroke="#1E6B34" stroke-width="3.2" stroke-linecap="round"/>
+  </g>
+</svg>

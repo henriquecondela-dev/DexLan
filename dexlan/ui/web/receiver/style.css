@@ -1,0 +1,108 @@
+:root {
+    --bg: hsl(140, 8%, 7%);
+    --surface: hsl(140, 6%, 11%);
+    --surface-2: hsl(140, 5%, 15%);
+    --line: hsl(140, 5%, 20%);
+    --text: hsl(120, 10%, 94%);
+    --text-soft: hsl(130, 6%, 62%);
+    --accent: hsl(137, 57%, 59%);
+    --accent-hover: hsl(137, 57%, 52%);
+    --accent-soft: hsl(137, 30%, 16%);
+    --on-accent: hsl(140, 8%, 7%);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 9vw;
+}
+.logo {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+#nome {
+    font-size: clamp(44px, 7vw, 84px);
+    line-height: 1;
+    overflow-wrap: anywhere;
+}
+.title {
+    font-size: clamp(18px, 2.2vw, 26px);
+    font-weight: 600;
+}
+.text {
+    color: var(--text-soft);
+    font-size: clamp(14px, 1.5vw, 18px);
+    max-width: 60ch;
+}
+
+.pin {
+    display: flex;
+    gap: 12px;
+    margin: 14px 0 6px;
+}
+.pin span {
+    font-family: var(--font-title);
+    font-size: clamp(48px, 6vw, 80px);
+    font-variant-numeric: tabular-nums;
+    width: 1.2em;
+    text-align: center;
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-bottom: 4px solid var(--accent);
+    border-radius: var(--radius);
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 9vw 26px;
+    color: var(--text-soft);
+    font-size: 13px;
+}
+.grow {
+    flex: 1;
+}
+
+.drawer {
+    position: fixed;
+    right: 24px;
+    bottom: 70px;
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.drawer .card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+details summary {
+    list-style: none;
+    margin-top: 6px;
+    cursor: pointer;
+}
+details summary::-webkit-details-marker {
+    display: none;
+}
+details[open] > :not(summary) {
+    margin-top: 10px;
+}
+.cabo-config .field {
+    margin-bottom: 8px;
+}
+.cabo-ip {
+    font-weight: 600;
+}

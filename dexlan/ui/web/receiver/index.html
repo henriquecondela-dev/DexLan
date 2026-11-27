@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>DexLan Receiver</title>
+    <link rel="stylesheet" href="../comum/base.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="4" y="22" width="34" height="24" rx="3" fill="currentColor"/>
+            <rect x="15" y="48" width="12" height="3" fill="currentColor"/>
+            <rect x="28" y="10" width="32" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="3"/>
+            <path d="M40 35a9 9 0 0 1 9 9M40 29a15 15 0 0 1 15 15" fill="none" stroke="var(--accent)" stroke-width="3.2" stroke-linecap="round"/>
+        </svg>
+        <h1 id="nome"></h1>
+        <p class="title" id="titulo"></p>
+        <div class="pin" id="codigo" hidden></div>
+        <p class="text" id="texto"></p>
+    </main>
+
+    <footer>
+        <span class="num" id="enderecos"></span>
+        <span class="linha-cabo" id="linhaCabo"></span>
+        <span class="grow"></span>
+        <button class="link" id="btnRede">Rede</button>
+        <button class="link" id="btnEcraInteiro">Ecrã inteiro (F11)</button>
+    </footer>
+
+    <div class="drawer" id="gaveta" hidden>
+        <div class="card" id="painelCabo"></div>
+        <button class="btn" id="btnFecharGaveta">Fechar</button>
+    </div>
+
+    <script src="../comum/ponte.js"></script>
+    <script src="../comum/cabo.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

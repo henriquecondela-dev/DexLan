@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>DexLan</title>
+    <link rel="stylesheet" href="../comum/base.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <section id="inicio" class="view">
+            <div class="head">
+                <div>
+                    <h1>Estender o ecrã</h1>
+                    <p class="hint">Escolhe de que lado fica o outro computador.</p>
+                </div>
+                <div class="menu">
+                    <button class="menu-btn" id="btnMenu" title="Mais opções">⋯</button>
+                    <div class="menu-list" id="menu" hidden>
+                        <button id="btnEsquecer">Esquecer dispositivos emparelhados</button>
+                        <button id="btnDesinstalar">Desinstalar o DexLan…</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layout" id="disposicao">
+                <button class="zone" data-pos="cima"></button>
+                <button class="zone" data-pos="esquerda"></button>
+                <div class="screen me" id="ecraLocal"></div>
+                <button class="zone" data-pos="direita"></button>
+                <button class="zone" data-pos="baixo"></button>
+            </div>
+
+            <div class="card">
+                <div class="card-head">
+                    <h2>Dispositivos</h2>
+                    <button class="link" id="btnProcurar">Procurar</button>
+                </div>
+                <ul class="devices" id="dispositivos"></ul>
+                <p class="hint" id="semDispositivos" hidden>Nenhum encontrado. Abre o DexLan Receiver no outro computador e confirma que estão na mesma rede ou ligados por cabo.</p>
+                <details class="by-ip">
+                    <summary class="link">Ligar por IP</summary>
+                    <input id="campoIp" class="num" placeholder="ex.: 192.168.1.20">
+                </details>
+            </div>
+
+            <div class="card" id="painelCabo"></div>
+
+            <div class="options">
+                <div class="field">
+                    <label for="resolucao">Resolução</label>
+                    <select id="resolucao">
+                        <option value="auto">Igual ao outro ecrã</option>
+                        <option value="1280x720">1280 × 720</option>
+                        <option value="1366x768">1366 × 768</option>
+                        <option value="1600x900">1600 × 900</option>
+                        <option value="1920x1080">1920 × 1080</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="qualidade">Qualidade</label>
+                    <select id="qualidade">
+                        <option value="3000">Leve</option>
+                        <option value="6000">Normal</option>
+                        <option value="10000">Alta</option>
+                    </select>
+                </div>
+            </div>
+            <label class="check" id="linhaHw" hidden><input type="checkbox" id="hw"> Usar a placa gráfica para comprimir o vídeo</label>
+
+            <p class="footer hint" id="rodape"></p>
+            <div class="actions">
+                <p class="error" id="erroInicio"></p>
+                <button class="btn primary wide" id="btnEstender" disabled>Estender ecrã</button>
+            </div>
+        </section>
+
+        <section id="a_ligar" class="view center" hidden>
+            <div class="spinner"></div>
+            <h1 id="tituloLigar">A ligar…</h1>
+            <p class="hint num" id="textoLigar"></p>
+            <button class="btn" id="btnCancelar">Cancelar</button>
+        </section>
+
+        <section id="codigo" class="view center" hidden>
+            <h1 id="tituloCodigo"></h1>
+            <p class="hint">Só é pedido da primeira vez.</p>
+            <input id="campoCodigo" class="pin-input num" maxlength="6" inputmode="numeric" autocomplete="off">
+            <p class="error" id="erroCodigo"></p>
+            <div class="row">
+                <button class="btn" id="btnCancelarCodigo">Cancelar</button>
+                <button class="btn primary" id="btnConfirmar" disabled>Confirmar</button>
+            </div>
+        </section>
+
+        <section id="activo" class="view" hidden>
+            <div>
+                <p class="hint">Ecrã estendido para</p>
+                <h1 id="nomeActivo"></h1>
+                <p class="state" id="estadoActivo"></p>
+            </div>
+            <div class="layout active" id="disposicaoActiva"></div>
+            <div class="stats">
+                <div><strong class="num" id="numFps">–</strong><span>imagens/s</span></div>
+                <div><strong class="num" id="numAtraso">–</strong><span>ms de atraso</span></div>
+                <div><strong class="num" id="numMbps">–</strong><span>Mbit/s</span></div>
+            </div>
+            <p class="hint" id="dicaActivo"></p>
+            <div class="actions">
+                <button class="btn primary wide" id="btnParar">Parar</button>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="janelaDesinstalar" hidden>
+        <div class="card">
+            <h2>Desinstalar o DexLan?</h2>
+            <p class="hint">Remove o programa e os atalhos do menu.</p>
+            <label class="check"><input type="checkbox" id="apagarTudo" checked> Apagar também as preferências, os emparelhamentos e o perfil do cabo</label>
+            <div class="row">
+                <button class="btn" id="btnNaoDesinstalar">Cancelar</button>
+                <button class="btn danger" id="btnSimDesinstalar">Desinstalar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../comum/ponte.js"></script>
+    <script src="../comum/cabo.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
