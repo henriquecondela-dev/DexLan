@@ -1,4 +1,9 @@
-const LADOS = { direita: "para a direita", esquerda: "para a esquerda", cima: "para cima", baixo: "para baixo" };
+const LADOS = {
+    direita: "para a direita",
+    esquerda: "para a esquerda",
+    cima: "para cima",
+    baixo: "para baixo",
+};
 
 const estado = {
     posicao: "direita",
@@ -23,7 +28,8 @@ function dispositivoEscolhido() {
 // ---------- disposição dos ecrãs
 
 function desenharDisposicao() {
-    $("#ecraLocal").innerHTML = `${escapar(estado.eu.nome)}${textoTamanho(estado.eu.tamanho)}`;
+    $("#ecraLocal").innerHTML =
+        `${escapar(estado.eu.nome)}${textoTamanho(estado.eu.tamanho)}`;
     const disp = dispositivoEscolhido();
     document.querySelectorAll("#disposicao .zone").forEach((z) => {
         const ativa = z.dataset.pos === estado.posicao;
@@ -67,7 +73,8 @@ function desenharDispositivos() {
 }
 
 function atualizarBotao() {
-    const temAlvo = Boolean(dispositivoEscolhido()) || $("#campoIp").value.trim() !== "";
+    const temAlvo =
+        Boolean(dispositivoEscolhido()) || $("#campoIp").value.trim() !== "";
     $("#btnEstender").disabled = !temAlvo || estado.bloqueado;
 }
 
@@ -80,6 +87,7 @@ function opcoes() {
     return {
         resolucao: $("#resolucao").value,
         qualidade: Number($("#qualidade").value),
+        fps: Number($("#fps").value),
         hw: $("#hw").checked,
     };
 }
@@ -98,8 +106,10 @@ $("#btnEstender").addEventListener("click", () => {
     });
 });
 
-["resolucao", "qualidade", "hw"].forEach((id) => {
-    $(`#${id}`).addEventListener("change", () => enviar("preferencias", opcoes()));
+["resolucao", "qualidade", , "fps", "hw"].forEach((id) => {
+    $(`#${id}`).addEventListener("change", () =>
+        enviar("preferencias", opcoes()),
+    );
 });
 
 $("#btnCancelar").addEventListener("click", () => enviar("cancelar"));
@@ -129,7 +139,9 @@ function confirmarCodigo() {
 
 // ---------- menu
 
-$("#btnMenu").addEventListener("click", () => mostrar($("#menu"), $("#menu").hidden));
+$("#btnMenu").addEventListener("click", () =>
+    mostrar($("#menu"), $("#menu").hidden),
+);
 document.addEventListener("click", (e) => {
     if (!e.target.closest(".menu")) {
         mostrar($("#menu"), false);
@@ -143,8 +155,12 @@ $("#btnDesinstalar").addEventListener("click", () => {
     mostrar($("#menu"), false);
     mostrar($("#janelaDesinstalar"));
 });
-$("#btnNaoDesinstalar").addEventListener("click", () => mostrar($("#janelaDesinstalar"), false));
-$("#btnSimDesinstalar").addEventListener("click", () => enviar("desinstalar", { tudo: $("#apagarTudo").checked }));
+$("#btnNaoDesinstalar").addEventListener("click", () =>
+    mostrar($("#janelaDesinstalar"), false),
+);
+$("#btnSimDesinstalar").addEventListener("click", () =>
+    enviar("desinstalar", { tudo: $("#apagarTudo").checked }),
+);
 
 // ---------- mensagens do Python
 
@@ -154,6 +170,7 @@ quando("inicio", (d) => {
     estado.ultimo = d.prefs.ultimo;
     $("#resolucao").value = d.prefs.resolucao || "auto";
     $("#qualidade").value = String(d.prefs.qualidade || 6000);
+    $("#fps").value = String(d.prefs.fps || 30); 
     $("#hw").checked = Boolean(d.prefs.hw);
     mostrar($("#linhaHw"), d.hwDisponivel);
     $("#rodape").textContent = `DexLan ${d.versao} · ${d.sistema}`;
@@ -188,10 +205,12 @@ quando("vista", (d) => {
         $("#textoLigar").textContent = d.ip;
     }
     if (d.nome === "codigo") {
-        $("#tituloCodigo").textContent = `Escreve o código que aparece em ${d.alvo}`;
+        $("#tituloCodigo").textContent =
+            `Escreve o código que aparece em ${d.alvo}`;
         $("#campoCodigo").value = "";
         $("#btnConfirmar").disabled = true;
-        $("#erroCodigo").textContent = d.restantes < 3 ? `Código errado. Restam ${d.restantes} tentativas.` : "";
+        $("#erroCodigo").textContent =
+            d.restantes < 3 ? `Código errado. Restam ${d.restantes} tentativas.` : "";
         setTimeout(() => $("#campoCodigo").focus(), 50);
     }
     if (d.nome === "activo") {
@@ -207,11 +226,19 @@ function desenharActivo(d) {
     const local = `<div class="screen">${escapar(estado.eu.nome)}${textoTamanho(estado.eu.tamanho)}</div>`;
     const primeiro = d.posicao === "esquerda" || d.posicao === "cima";
     const caixa = $("#disposicaoActiva");
-    caixa.className = "layout active" + (d.posicao === "cima" || d.posicao === "baixo" ? " vertical" : "");
+    caixa.className =
+        "layout active" +
+        (d.posicao === "cima" || d.posicao === "baixo" ? " vertical" : "");
     caixa.innerHTML = primeiro ? outro + local : local + outro;
-    $("#dicaActivo").textContent = `Arrasta janelas ${LADOS[d.posicao]}. Quando parares, voltam todas para este ecrã.`;
-    estadoLigacao(d.via === "cabo" ? "Ligado por cabo" : "Ligado pela rede", "ok");
-    ["#numFps", "#numAtraso", "#numMbps"].forEach((s) => ($(s).textContent = "–"));
+    $("#dicaActivo").textContent =
+        `Arrasta janelas ${LADOS[d.posicao]}. Quando parares, voltam todas para este ecrã.`;
+    estadoLigacao(
+        d.via === "cabo" ? "Ligado por cabo" : "Ligado pela rede",
+        "ok",
+    );
+    ["#numFps", "#numAtraso", "#numMbps"].forEach(
+        (s) => ($(s).textContent = "–"),
+    );
 }
 
 function estadoLigacao(texto, tipo) {
@@ -222,7 +249,10 @@ function estadoLigacao(texto, tipo) {
 
 quando("sessao", (d) => {
     if (d.estado === "activo") {
-        estadoLigacao(d.via === "cabo" ? "Ligado por cabo" : "Ligado pela rede", "ok");
+        estadoLigacao(
+            d.via === "cabo" ? "Ligado por cabo" : "Ligado pela rede",
+            "ok",
+        );
     } else if (d.estado === "a_religar") {
         estadoLigacao("Ligação perdida, a tentar religar…", "aviso");
     }
@@ -240,15 +270,32 @@ enviar("pronto");
 // Aberto no browser (fora da aplicação): dados de exemplo para editar o visual.
 if (!dentroDaApp()) {
     receber("inicio", {
-        nomeHost: "meu-pc", tamanhoLocal: [1366, 768], versao: "dev", sistema: "Browser",
-        prefs: { posicao: "direita" }, hwDisponivel: true,
+        nomeHost: "meu-pc",
+        tamanhoLocal: [1366, 768],
+        versao: "dev",
+        sistema: "Browser",
+        prefs: { posicao: "direita" },
+        hwDisponivel: true,
     });
     receber("dispositivos", [
-        { id: "a", nome: "portatil-antigo", ip: "169.254.77.77", via: "cabo", emparelhado: true },
+        {
+            id: "a",
+            nome: "portatil-antigo",
+            ip: "169.254.77.77",
+            via: "cabo",
+            emparelhado: true,
+        },
         { id: "b", nome: "sala", ip: "192.168.1.20", via: "rede" },
     ]);
     receber("cabo", {
-        disponivel: true, texto: "Ligado por cabo em enp0s31f6", ip: "169.254.49.121/16",
-        definicoes: { ativo: true, modo: "auto", endereco: "192.168.50.1", mascara: "255.255.255.0" },
+        disponivel: true,
+        texto: "Ligado por cabo em enp0s31f6",
+        ip: "169.254.49.121/16",
+        definicoes: {
+            ativo: true,
+            modo: "auto",
+            endereco: "192.168.50.1",
+            mascara: "255.255.255.0",
+        },
     });
 }

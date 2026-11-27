@@ -139,12 +139,13 @@ class JanelaHost:
         self.prefs.update(mudancas)
         guardar_preferencias(self.prefs)
 
-    def do_ligar(self, alvo, posicao, resolucao, qualidade, hw):
+    def do_ligar(self, alvo, posicao, resolucao, qualidade, hw, fps=30):
         ip, _, porta = alvo["ip"].partition(":")
         self.alvo = {"ip": ip, "porta": int(alvo.get("porta") or porta or CONTROL_PORT),
                      "nome": alvo.get("nome") or ip}
-        self.do_preferencias(posicao=posicao, resolucao=resolucao, qualidade=qualidade, hw=hw)
-        opcoes = OpcoesHost(resolution=resolucao, bitrate=int(qualidade), position=POSICOES.get(posicao, "right"), hw=hw)
+        self.do_preferencias(posicao=posicao, resolucao=resolucao, qualidade=qualidade, hw=hw,fps=fps)
+        opcoes = OpcoesHost(resolution=resolucao, fps=int(fps), bitrate=int(qualidade) * int(fps) // 30,
+                            position=POSICOES.get(posicao, "right"), hw=hw)
         try:
             self.sessao = SessaoHost(opcoes, self.env, self.eventos)
         except ecra.ErroEcra as e:
