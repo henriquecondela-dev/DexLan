@@ -1,12 +1,5 @@
 # Como funciona
 
-```
- Computador principal                                  Computador ecrã
-┌───────────────┐┌────────────────┐                   ┌────────────────┐
-│ ecrã físico   ││ ecrã virtual   │  H.264 sobre TLS  │ mostra o ecrã  │
-│               ││ (Mutter)       │ ────────────────► │ virtual        │
-└───────────────┘└────────────────┘  rede ou cabo     └────────────────┘
-```
 
 ## Ecrã virtual
 

@@ -32,8 +32,8 @@
     --on-accent: hsl(0, 0%, 100%);
     --warn: hsl(38, 90%, 32%);
     --danger: hsl(0, 70%, 40%);
-    --radius: 10px;
-    --radius-sm: 6px;
+    --radius: 5px;
+    --radius-sm: 2px;
     --font-title: 'RobotoCondensed', 'Arial Narrow', sans-serif;
     --font-text: 'Inter', 'Cantarell', sans-serif;
 }

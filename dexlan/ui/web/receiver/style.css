@@ -25,21 +25,25 @@ main {
     gap: 10px;
     padding: 0 9vw;
 }
+
 .logo {
     width: 56px;
     height: 56px;
     margin-bottom: 8px;
     color: var(--text);
 }
+
 #nome {
     font-size: clamp(44px, 7vw, 84px);
     line-height: 1;
     overflow-wrap: anywhere;
 }
+
 .title {
     font-size: clamp(18px, 2.2vw, 26px);
     font-weight: 600;
 }
+
 .text {
     color: var(--text-soft);
     font-size: clamp(14px, 1.5vw, 18px);
@@ -51,6 +55,7 @@ main {
     gap: 12px;
     margin: 14px 0 6px;
 }
+
 .pin span {
     font-family: var(--font-title);
     font-size: clamp(48px, 6vw, 80px);
@@ -71,6 +76,7 @@ footer {
     color: var(--text-soft);
     font-size: 13px;
 }
+
 .grow {
     flex: 1;
 }
@@ -84,25 +90,31 @@ footer {
     flex-direction: column;
     gap: 10px;
 }
+
 .drawer .card {
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
+
 details summary {
     list-style: none;
     margin-top: 6px;
     cursor: pointer;
 }
+
 details summary::-webkit-details-marker {
     display: none;
 }
-details[open] > :not(summary) {
+
+details[open]> :not(summary) {
     margin-top: 10px;
 }
+
 .cabo-config .field {
     margin-bottom: 8px;
 }
+
 .cabo-ip {
     font-weight: 600;
 }
